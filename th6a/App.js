@@ -8,16 +8,23 @@ export default function App() {
 
   const render = ({ item }) => {
     return (
-      <View style={{flexDirection: 'row'}}>
-        <Text>{item.id}</Text>
-        <Text>{item.work}</Text>
-        <TouchableOpacity style={{}} onPress={() => {
-          setToDo(toDo.slice(item.id));
+      <View style={{flexDirection: 'row', height: 40, alignItems: 'center', justifyContent: 'center'}}>
+        <Text style={{marginLeft: 5, marginRight: 10, width: 25}}>{item.id}</Text>
+        <Text style={{marginRight: 10, width: 240}}>{item.work}</Text>
+        <TouchableOpacity style={{alignItems: 'center', justifyContent: 'center', backgroundColor: 'grey', width: 65}} onPress={() => {
+          deleteToDo(item)
         }}>
-          <Text>Remove</Text>
+          <Text style={{color: 'white'}}>Remove</Text>
         </TouchableOpacity>
       </View>
     )
+  }
+
+  const deleteToDo = (id) => {
+    const removeItem = toDo.filter((todo) => {
+      return todo !== id;
+    });
+    return setToDo(removeItem)
   }
 
   return (
